@@ -8,6 +8,7 @@ public class Generator {
 
     public StringBuilder pool;
 
+
     public Generator(Scanner scanner) {
         keyboard = scanner;
     }
@@ -91,7 +92,7 @@ public class Generator {
 
         for(int i =0; i<length; i++){
             String pool = Characters(Upper,Lower,Number,Symbol);
-            password += pool.charAt(randomNumber(0,pool.length()));
+            password += pool.charAt(randomNumber(0,pool.length()-1));
         }
 
         return password;
@@ -172,7 +173,9 @@ public class Generator {
 
         final String password = GeneratePassword(Upper, Lower, Number, Symbol, length);
 
-        System.err.println("Your password -> " + password);
+        System.err.print("Your password -> " + password);
+        System.out.println();
+
     }
 
 
@@ -183,7 +186,8 @@ public class Generator {
 
         final Password password = new Password(input);
 
-        System.out.println(password.calculateScore());
+        System.err.print("Your Score -> " + password.calculateScore());
+        System.out.println();
     }
 
 
