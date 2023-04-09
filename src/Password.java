@@ -1,7 +1,12 @@
 public class Password {
+    Generator generator = new Generator();
     String Value;
     int Length;
 
+    public Password(){
+        Value = "";
+        Length = 0;
+    }
     public Password(String s) {
         Value = s;
         Length = s.length();
@@ -11,25 +16,40 @@ public class Password {
         int Score = 0;
 
         String s = this.Value;
+
         boolean Upper = false;
         boolean Lower = false;
-        boolean Num = false;
+        boolean Number = false;
         boolean Symbol = false;
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
+            String c = String.valueOf(s.charAt(i));
 
-            if ((int) c >= 65 && (int) c <= 90) Upper = true;
-            if ((int) c >= 97 && (int) c <= 122) Lower = true;
-            if ((int) c >= 48 && (int) c <= 57) Num = true;
-            else Symbol = true;
+            if(generator.UPPERCASE_LETTERS.contains(c)) Upper = true;
+            if(generator.LOWERCASE_LETTERS.contains(c)) Lower = true;
+            if(generator.NUMBERS.contains(c)) Number = true;
+            if(generator.SYMBOLS.contains(c)) Symbol = true;
+
+
         }
 
-        if (Upper) Score += 1;
-        if (Lower) Score += 1;
-        if (Num) Score += 1;
-        if (Symbol) Score += 1;
-        if (s.length() >= 8) Score += 1;
+        if (Upper) {
+            Score += 1;
+        }
+
+        if (Lower) {
+            Score += 1;
+        }
+        if (Number) {
+            Score += 1;
+        }
+        if (Symbol) {
+            Score += 1;
+
+        }
+        if (s.length() >= 8) {
+            Score += 1;
+        }
 
         return Score;
     }
