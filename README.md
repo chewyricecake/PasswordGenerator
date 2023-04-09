@@ -1,23 +1,16 @@
-<h1>Password Generator</h1>
+<h1>Password Generator JUnit Testing</h1>
 
-The Password Generator is a Java-based command-line tool that generates strong passwords based on user preferences. The program also tests the strength of the generated password and provides a score based on various criteria.
+This GitHub branch contains JUnit testing for the Password Generator project.
 
-<h2>Features</h2>
+<h2>Test Cases</h2>
 
-The Password Generator has the following features:
+The following test cases have been written for the Password Generator:
 
-- Generates a random password based on user preferences
-- User can specify if the password should include uppercase letters, lowercase letters, numbers, and symbols
-- User can specify the length of the password
-- Tests the strength of the generated password based on the following criteria (maximum score of 5):
-  - Including uppercase letter
-  - Including lowercase letter
-  - Including number
-  - Including symbol
-  - The length of the password exceeding 8 characters
+<h3>All possible permutations of password cases</h3>
+Test cases have been written to generate all possible permutations of passwords based on user-specified criteria for including uppercase and lowercase letters, numbers, and symbols. 
 
-<h2>Contributing</h2>
-Contributions to the Password Generator are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
+<h3>Strength calculation for different password cases</h3>
+These test cases test the strength calculation for different password based on the specified criteria.
 
-<h2>License</h2>
-The Password Generator is licensed under the MIT License. See the LICENSE file for more information.
+<h2>Contribution</h2>
+Contributions to this project are welcome. If you find any issues or have suggestions for additional test cases, please open an issue or pull request.
