@@ -1,4 +1,4 @@
-<h1>Password Generator</h1>
+<h1>🔒 Password Generator</h1>
 
 The Password Generator is a Java-based command-line tool that generates strong passwords based on user preferences. The program also tests the strength of the generated password and provides a score based on various criteria.
 
