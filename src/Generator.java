@@ -6,9 +6,12 @@ public class Generator {
     public int minLength = 0;
     public static Scanner keyboard;
 
-    public StringBuilder pool;
+    public static StringBuilder pool;
 
 
+    public Generator(){
+
+    }
     public Generator(Scanner scanner) {
         keyboard = scanner;
     }
@@ -32,61 +35,47 @@ public class Generator {
         return pool.toString();
     }
 
-    private char randomCharacter(int type){
-        switch(type){
-            case 1 -> {
-                return (char)randomNumber(65,90);
-            }
-            case 2 -> {
-                return (char)randomNumber(97,122);
-            }
-            case 3 -> {
-                return (char)randomNumber(48,57);
-            }
-            case 4 -> {
-                int chance = randomNumber(1,3);
-                switch(chance){
-                    case 1 ->{
-                        return (char)randomNumber(34,47);
-                    }
-                    case 2->{
-                        return (char)randomNumber(58,64);
-                    }
-                    case 3->{
-                        return (char)randomNumber(91,96);
-                    }
-                }
-            }
-        }
-        return 'a';
-    }
-
     private int randomNumber(int min, int max){
         return min + (int)(Math.random()*((max-min)+1));
     }
 
 
-
+    public String CheckGeneratedPassword(boolean Upper, boolean Lower, boolean Number, boolean Symbol, int length){
+        return GeneratePassword(Upper,Lower,Number,Symbol,length);
+    }
 
     private String GeneratePassword(boolean Upper, boolean Lower, boolean Number, boolean Symbol, int length) {
 
         String password = "";
 
+        if(!Upper&&!Lower&&!Number&&!Symbol){
+            throw new IllegalArgumentException("At least one criteria should be selected.");
+        }
+
+        if(length == 0){
+            throw new IllegalArgumentException("Password length cannot be 0.");
+        }
+
+        if(length<minLength){
+            throw new IllegalArgumentException("Input length smaller than the minimum length.");
+        }
+
+
         if(Upper){
-            password+=randomCharacter(1);
+            password+=UPPERCASE_LETTERS.charAt(randomNumber(0,UPPERCASE_LETTERS.length()-1));
             length -=1;
         }
 
         if(Lower){
-            password+=randomCharacter(2);
+            password+=LOWERCASE_LETTERS.charAt(randomNumber(0,LOWERCASE_LETTERS.length()-1));
             length -=1;
         }
         if(Number){
-            password+=randomCharacter(3);
+            password+=NUMBERS.charAt(randomNumber(0,NUMBERS.length()-1));
             length -=1;
         }
         if(Symbol){
-            password+=randomCharacter(4);
+            password+=SYMBOLS.charAt(randomNumber(0,SYMBOLS.length()-1));
             length -=1;
         }
 
@@ -106,14 +95,17 @@ public class Generator {
         boolean Number = false;
         boolean Symbol = false;
 
-        boolean correctParams;
+        int length = 0;
+
+        boolean wrongChar;
+        boolean wrongLength;
 
         System.out.println();
         System.out.println("Answer the following questions with O or X \n");
 
         do {
             String input;
-            correctParams = false;
+            wrongChar = false;
 
             do {
                 System.out.println("Lowercase? ");
@@ -160,16 +152,23 @@ public class Generator {
             else if (input.equalsIgnoreCase("X")) Symbol = false;
 
             if (!Upper && !Lower && !Number && !Symbol) {
-                System.out.println("Password cannot be empty\n");
-                correctParams = true;
+                System.out.println("<<Password cannot be empty>>\n");
+                wrongChar = true;
             }
 
-        } while (correctParams);
+        } while (wrongChar);
 
-        // minimum length based on the must-have characters
-        System.out.printf("Your minimum length based on the character requirements is %d \n",minLength);
-        System.out.print("Enter the length of the password in integer value: ");
-        int length = keyboard.nextInt();
+        do{
+            wrongLength = false;
+            // minimum length based on the must-have characters
+            System.out.printf("Your minimum length based on the character requirements is %d \n",minLength);
+            System.out.print("Enter the length of the password in integer value: ");
+            length = keyboard.nextInt();
+            if(length<=minLength||length==0){
+                System.out.println("<<Invalid length chosen: Please check the minimum length again>>");
+                wrongLength = true;
+            }
+        }while(wrongLength);
 
         final String password = GeneratePassword(Upper, Lower, Number, Symbol, length);
 
@@ -189,6 +188,7 @@ public class Generator {
         System.err.print("Your Score -> " + password.calculateScore());
         System.out.println();
     }
+
 
 
 }
