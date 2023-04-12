@@ -1,8 +1,4 @@
-junit
 <h1>Password Generator JUnit Testing</h1>
-
-<h1>🔒 Password Generator</h1>
-main
 
 This GitHub branch contains JUnit testing for the Password Generator project.
 
