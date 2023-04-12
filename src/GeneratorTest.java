@@ -39,7 +39,7 @@ class GeneratorTest {
     @Test
     void upperTrue(){
         final String upperCase = generator.CheckGeneratedPassword(true,false,false,false,length);
-        assertTrue(upperCase.replace("[^A-Z]","")==upperCase);
+        assertTrue(upperCase.replace("[^A-Z]","")!=upperCase);
     }
     @Test
     void lowerTrue(){
