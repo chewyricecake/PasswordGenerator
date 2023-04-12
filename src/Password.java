@@ -58,19 +58,19 @@ public class Password {
         int Score = this.Strength();
 
         switch (Score){
-            case 5 -> {
+            case 5 : {
                 return "5/5";
             }
-            case 4 -> {
+            case 4 : {
                 return "4/5";
             }
-            case 3 -> {
+            case 3 : {
                 return "3/5";
             }
-            case 2 -> {
+            case 2 : {
                 return "2/5";
             }
-            case 1 -> {
+            case 1 : {
                 return "1/5";
             }
         }

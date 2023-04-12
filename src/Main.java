@@ -17,15 +17,15 @@ public class Main {
             input = keyboard.next();
 
             switch(input){
-                case "1"->{
+                case "1":{
                     generator.requestPassword();
                     menu();
                 }
-                case "2"->{
+                case "2":{
                     generator.testPassword();
                     menu();
                 }
-                case "3"->{
+                case "3":{
                     System.out.println("Exiting program");
                 }
             }
